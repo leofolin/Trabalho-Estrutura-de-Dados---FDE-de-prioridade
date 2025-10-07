@@ -11,29 +11,29 @@ typedef struct{
     int matricula;
     int ranking;
     char curso[20];
-}infoAluno;
+}info;
 
 struct nodo{
-    infoAluno dados;
+    info dados;
     struct nodo *atras;
     struct nodo *defronte;
 };
 
-struct desc{
+typedef struct desc{
     struct nodo *frente;
     struct nodo *cauda;
     struct nodo *refMovel;
     int tam;
-};
+} desc;
 
 //================FUNCOES===================
 struct desc *cria(int tam);
-int insere(info *novo, struct desc *p);
-int tamanhoDaFila(struct desc *p);
-int reinicia(struct desc *p);
-struct desc *destroi(struct desc *p);
-int buscaNaCauda(struct desc *p, info *alvo);
-int buscaNaFrente(struct desc *p, info *alvo);
-int remove(struct desc *p, info *alvo);
-int testa_vazia(struct desc *p);
-int inverte(struct desc *p);
+int insere(info *novo, desc *p);
+int tamanhoDaFila(desc *p);
+int reinicia(desc *p);
+struct desc *destroi(desc *p);
+int buscaNaCauda(desc *p, info *alvo);
+int buscaNaFrente(desc *p, info *alvo);
+int remove(desc *p, info *alvo);
+int testa_vazia(desc *p);
+int inverte(desc *p);
