@@ -34,6 +34,6 @@ int reinicia(desc *p);
 struct desc *destroi(desc *p);
 int buscaNaCauda(desc *p, info *alvo);
 int buscaNaFrente(desc *p, info *alvo);
-int remove(desc *p, info *alvo);
+int remover(desc *p, info *alvo);
 int testa_vazia(desc *p);
 int inverte(desc *p);
