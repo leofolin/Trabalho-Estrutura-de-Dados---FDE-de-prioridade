@@ -11,10 +11,10 @@ typedef struct{
     int matricula;
     int ranking;
     char curso[20];
-}info;
+}infoAluno;
 
 struct nodo{
-    info dados;
+    infoAluno dados;
     struct nodo *atras;
     struct nodo *defronte;
 };
