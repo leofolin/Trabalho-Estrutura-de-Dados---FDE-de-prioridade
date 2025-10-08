@@ -58,12 +58,15 @@ bool removeFrente(desc *p, info *alvo) {
 	}
 	memcpy(alvo, &(p->frente->dados), p->tamInfo);
 
-	struct nodo *aux = p->frente;
+	struct nodo *aux = p->frente->atras;
 	if(aux == p->cauda) {
 		p->frente = p->cauda = NULL;
 	} else {
-		p->frente = aux->defronte;
-		p->frente->atras = NULL;
+		free(p->frente);
+		p->frente = aux;
+		p->frente->defronte = NULL;
+		//p->frente = aux->defronte;
+		//p->frente->atras = NULL;
 	}
 	free(aux);
 	return true;
