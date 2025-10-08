@@ -11,6 +11,23 @@ struct desc *cria(int tam) {
 	return descricao;
 }
 
+bool removeFrente(desc *p, info *alvo) {
+	if(testaVazia(p)) {
+		return false;
+	}
+	memcpy(alvo, &(p->frente->dados), p->tamInfo);
+
+	struct nodo *aux = p->frente->atras;
+	if(aux == p->cauda) {
+		p->frente = p->cauda = NULL;
+	} else {
+		free(p->frente);
+		p->frente = aux;
+		p->frente->defronte = NULL;
+	}
+	free(aux);
+	return true;
+}
 int tamanhoDaFila(desc *p) {
 	struct nodo *aux = p->cauda;
 	int i = 0;
