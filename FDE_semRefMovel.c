@@ -1,5 +1,4 @@
 #include "generica_FDE.c"
-#include "arq.h"
 
 bool insere(info *nodoInfo, desc *p){
 
