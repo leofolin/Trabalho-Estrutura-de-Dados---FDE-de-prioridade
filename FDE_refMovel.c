@@ -48,7 +48,7 @@ bool insere(info *nodoInfo, desc *p){
                 ok = true;
             }
             else if(novoNodo->dados.ranking < p->refMovel->dados.ranking){
-                while(novoNodo->dados.ranking <= p->refMovel->dados.ranking){
+                while(novoNodo->dados.ranking < p->refMovel->dados.ranking){
                     p->refMovel = p->refMovel->atras;
                     //ref vai para tras ate novoNodo.ranking ser maior
                 }
