@@ -52,6 +52,11 @@ bool insereRefMovel(info *nodoInfo, desc *p){
                     p->refMovel = p->refMovel->atras;
                     //ref vai para tras ate novoNodo.ranking ser maior
                 }
+
+                //===============PROBLEMA==================
+                //aqui embaixo, o novoNodo pode ficar na frente mesmo que ele seja igual ao ref
+                //mudar para que ele fique sempre atras quando for igual (mudar para inserir ele atras de ref)
+                
                 //coloca novoNodo na frente de refMovel
                 novoNodo->atras = p->refMovel;
                 novoNodo->defronte = p->refMovel->defronte;
