@@ -32,7 +32,7 @@ bool insere(info *nodoInfo, desc *p){
         else if(novoNodo->dados.ranking >= p->frente->dados.ranking){
             novoNodo->defronte = NULL;
             novoNodo->atras = p->frente;
-            p->frente->atras = novoNodo;
+            p->frente->defronte = novoNodo;
             p->frente = novoNodo;
             ok = true;
         }
