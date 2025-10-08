@@ -1,3 +1,7 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<stdbool.h>
 #include "arq.h"
 
 desc *cria(int tam) {
@@ -8,6 +12,58 @@ desc *cria(int tam) {
 		descricao->tam = tam;
 	}
 	return descricao;
+}
+
+bool insere(info *nodoInfo, desc *p){
+
+    if (p == NULL || nodoInfo == NULL) return false;
+
+    bool ok = false;
+	struct nodo *novoNodo = NULL;
+    novoNodo = malloc(sizeof(struct nodo));
+    if (novoNodo == NULL) return false;
+    memcpy(&(novoNodo->dados), nodoInfo, p->tam);
+    if(p->frente == NULL && p->cauda == NULL){ //caso fila vazia
+        novoNodo->defronte = NULL;
+        novoNodo->atras = NULL;
+        p->frente = novoNodo;
+        p->cauda = novoNodo;
+        ok = true;
+    }
+    else{
+        //verifica se o novo elemento é o de menor prioridade
+        //se for, vira a nova cauda
+        if(novoNodo->dados.ranking <= p->cauda->dados.ranking){
+            novoNodo->atras = NULL;
+            novoNodo->defronte = p->cauda;
+            p->cauda->atras = novoNodo;
+            p->cauda = novoNodo;
+            ok = true;
+        }
+        //verifica se o novo elemento é o de maior prioridade
+        //se for, vira a nova frente da fila
+        else if(novoNodo->dados.ranking >= p->frente->dados.ranking){
+            novoNodo->defronte = NULL;
+            novoNodo->atras = p->frente;
+            p->frente->atras = novoNodo;
+            p->frente = novoNodo;
+            ok = true;
+        }
+        else{ //se nao for maior nem menor, vai estar no meio
+            struct nodo *aux = p->cauda;
+            //while só para quando o novoNodo tem ranking > que aux
+            //a partir disso, posicionar o novoNodo na frente do aux
+            while(novoNodo->dados.ranking >= aux->dados.ranking){
+                aux = aux->defronte;
+            }
+            novoNodo->atras = aux->atras;
+            novoNodo->defronte = aux;
+            aux->atras->defronte = novoNodo;
+            aux->atras = novoNodo;
+            ok = true;
+        }
+    }
+    return ok;
 }
 
 int tamanhoDaFila(desc *p) {
