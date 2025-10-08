@@ -21,7 +21,7 @@ int tamanhoDaFila(desc *p) {
 }
 
 bool reinicia(desc *p) {
-	if(p->cauda == NULL || p->frente == NULL) {
+	if(testaVazia(p)) {
 			return false;
 	}	
 	struct nodo *aux = p->cauda->defronte;
@@ -37,7 +37,7 @@ bool reinicia(desc *p) {
 }
 
 bool buscaNaCauda(desc *p, info *alvo) {
-	if(p->cauda == NULL || p->frente == NULL) {
+	if(testaVazia(p)) {
 		return false;
 	}
 	*alvo = p->cauda->dados;
@@ -45,14 +45,14 @@ bool buscaNaCauda(desc *p, info *alvo) {
 }
 
 bool buscaNaFrente(desc *p, info *alvo) {
-	if(p->cauda == NULL || p->frente == NULL) {
+	if(testaVazia(p)) {
 		return false;
 	}
 	*alvo = p->frente->dados;
 	return true;
 }
 bool removeFrente(desc *p, info *alvo) {
-	if(p->cauda == NULL || p->frente == NULL) {
+	if(testaVazia(p)) {
 		return false;
 	}
 	memcpy(alvo, &(p->frente->dados), p->tam);
@@ -66,4 +66,8 @@ bool removeFrente(desc *p, info *alvo) {
 	}
 	free(aux);
 	return true;
+}
+
+bool testaVazia(desc *p) {
+	return p->cauda == NULL || p->frente == NULL;
 }

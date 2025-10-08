@@ -32,5 +32,5 @@ struct desc *destroi(desc *p);
 bool buscaNaCauda(desc *p, info *alvo);
 bool buscaNaFrente(desc *p, info *alvo);
 bool removeFrente(desc *p, info *alvo);
-bool testa_vazia(desc *p);
+bool testaVazia(desc *p);
 bool inverte(desc *p);
