@@ -1,7 +1,7 @@
 #include "arq.h"
 // Funções genéricas usadas nas duas implementações de fila
 
-desc *cria(int tam) {
+struct desc *cria(int tam) {
 	desc *descricao = malloc(sizeof(desc));
 	if(descricao != NULL) {
 		descricao->cauda = NULL;
