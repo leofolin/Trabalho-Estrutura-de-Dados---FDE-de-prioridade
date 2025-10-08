@@ -25,6 +25,8 @@ bool gerarFila(desc *fila, int n) {
 
 #if RANDOM 
 void randomiza() {
-	system("sort -R" ARQUIVO "> Dataset2");
+	system("sort -R" ARQUIVO "> Dataset2.csv");
 }
+#undef ARQUIVO
+#define ARQUIVO "Dataset2.csv"
 #endif
