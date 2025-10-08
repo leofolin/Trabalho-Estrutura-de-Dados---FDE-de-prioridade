@@ -1,8 +1,8 @@
-#include "arq.h"
+#include "generica_FDE.h"
 
 bool insere(info *nodoInfo, desc *p){
 
-    if (p == NULL || nodoInfo == NULL) return false;
+    if (testaVazia(p)) return false;
 
     bool ok = false;
 	struct nodo *novoNodo = NULL;
