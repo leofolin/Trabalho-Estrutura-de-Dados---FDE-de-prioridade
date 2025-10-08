@@ -1,6 +1,6 @@
 #include "generica_FDE.c"
-
-bool insereRefMovel(info *nodoInfo, desc *p){
+#if REF_MOVEL
+bool insere(info *nodoInfo, desc *p){
     bool ok = false;
     struct nodo *novoNodo = NULL;
     novoNodo = malloc(sizeof(struct nodo));
@@ -82,3 +82,4 @@ bool insereRefMovel(info *nodoInfo, desc *p){
     }
     return ok;
 }
+#endif
