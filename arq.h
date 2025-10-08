@@ -19,6 +19,12 @@ struct nodo{
 typedef struct desc{
     struct nodo *frente;
     struct nodo *cauda;
+    int tamInfo;
+} desc;
+
+typedef struct desc{
+    struct nodo *frente;
+    struct nodo *cauda;
     struct nodo *refMovel;
     int tamInfo;
 } desc;
