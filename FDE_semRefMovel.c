@@ -36,6 +36,11 @@ bool reinicia(desc *p) {
 	return true;
 }
 
+struct desc *destroi(desc *p) {
+	reinicia(p);
+	free(p);
+	return NULL;
+}
 bool buscaNaCauda(desc *p, info *alvo) {
 	if(testaVazia(p)) {
 		return false;
