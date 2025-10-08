@@ -1,10 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#define True 1
-#define False 0
-#define sim 1
-#define nao 0
+#include<stdbool.h>
 
 typedef struct{
     char nome[50];
@@ -28,12 +25,12 @@ typedef struct desc{
 
 //================FUNCOES===================
 struct desc *cria(int tam);
-int insere(info *novo, desc *p);
+bool insere(info *novo, desc *p);
 int tamanhoDaFila(desc *p);
-int reinicia(desc *p);
+bool reinicia(desc *p);
 struct desc *destroi(desc *p);
-int buscaNaCauda(desc *p, info *alvo);
-int buscaNaFrente(desc *p, info *alvo);
-int remover(desc *p, info *alvo);
-int testa_vazia(desc *p);
-int inverte(desc *p);
+bool buscaNaCauda(desc *p, info *alvo);
+bool buscaNaFrente(desc *p, info *alvo);
+bool removeFrente(desc *p, info *alvo);
+bool testa_vazia(desc *p);
+bool inverte(desc *p);
