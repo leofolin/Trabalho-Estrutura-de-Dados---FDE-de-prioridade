@@ -5,6 +5,7 @@
 
 #define ARQUIVO "dataset_v1.csv"
 #define REF_MOVEL 0
+#define RANDOM 0
 
 typedef struct{
     char nome[50];

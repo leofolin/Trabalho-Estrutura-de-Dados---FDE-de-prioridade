@@ -23,6 +23,8 @@ bool gerarFila(desc *fila, int n) {
 	return true;
 }
 
+#if RANDOM 
 void randomiza() {
 	system("sort -R" ARQUIVO "> Dataset2");
 }
+#endif

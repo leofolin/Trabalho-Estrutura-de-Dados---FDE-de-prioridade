@@ -7,7 +7,7 @@ struct desc *cria(int tam) {
 		descricao->cauda = NULL;
 		descricao->frente = NULL;
 		descricao->tamInfo = tam;
-			#if REF_MOVEL
+		#if REF_MOVEL
 			descricao->refMovel = NULL
 		#endif
 	}
