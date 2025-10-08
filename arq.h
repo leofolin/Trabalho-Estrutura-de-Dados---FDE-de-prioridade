@@ -21,7 +21,6 @@ typedef struct desc{
     struct nodo *cauda;
     struct nodo *refMovel;
     int tamInfo;
-    int tamFila;
 } desc;
 
 //================FUNCOES===================
