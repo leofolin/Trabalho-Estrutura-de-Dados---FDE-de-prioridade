@@ -22,7 +22,7 @@ struct nodo{
 typedef struct desc{
     struct nodo *frente;
     struct nodo *cauda;
-    #if REF_MOVEL == 1
+    #if REF_MOVEL
         struct nodo *refMovel;
     #endif
     int tamInfo;
