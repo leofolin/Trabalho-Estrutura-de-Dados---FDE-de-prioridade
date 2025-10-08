@@ -5,7 +5,6 @@ desc *cria(int tam) {
 	if(descricao != NULL) {
 		descricao->cauda = NULL;
 		descricao->frente = NULL;
-		desc->tamFila = 0;
 		descricao->tam = tam;
 	}
 	return descricao;
