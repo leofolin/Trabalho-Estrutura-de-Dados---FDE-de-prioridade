@@ -4,6 +4,7 @@
 #include<stdbool.h>
 
 #define ARQUIVO "dataset_v1.csv"
+#define REF_MOVEL 0
 
 typedef struct{
     char nome[50];
@@ -21,13 +22,9 @@ struct nodo{
 typedef struct desc{
     struct nodo *frente;
     struct nodo *cauda;
-    int tamInfo;
-} desc;
-
-typedef struct desc{
-    struct nodo *frente;
-    struct nodo *cauda;
-    struct nodo *refMovel;
+    #if REF_MOVEL == 1
+        struct nodo *refMovel;
+    #endif
     int tamInfo;
 } desc;
 
