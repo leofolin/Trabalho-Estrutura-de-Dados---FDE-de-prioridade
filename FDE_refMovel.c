@@ -62,7 +62,7 @@ bool insereRefMovel(info *nodoInfo, desc *p){
             }
             else if(novoNodo->dados.ranking > p->refMovel->dados.ranking){
                 while(novoNodo->dados.ranking > p->refMovel->dados.ranking){
-                    p->refMovel = p->refMovel->frente;
+                    p->refMovel = p->refMovel->defronte;
                     //ref vai para frente ate ser maior que novoNodo.ranking
                 }
                 //coloca novoNodo atras do refMovel
