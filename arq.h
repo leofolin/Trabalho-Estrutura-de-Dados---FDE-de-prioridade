@@ -3,6 +3,8 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
+#define ARQUIVO "dataset_v1.csv"
+
 typedef struct{
     char nome[50];
     int matricula;
