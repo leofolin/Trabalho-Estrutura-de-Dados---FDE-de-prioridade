@@ -36,6 +36,21 @@ bool reinicia(desc *p) {
 	return true;
 }
 
+bool buscaNaCauda(desc *p, info *alvo) {
+	if(p->cauda == NULL || p->frente == NULL) {
+		return false;
+	}
+	*alvo = p->cauda->dados;
+	return true;
+}
+
+bool buscaNaFrente(desc *p, info *alvo) {
+	if(p->cauda == NULL || p->frente == NULL) {
+		return false;
+	}
+	*alvo = p->frente->dados;
+	return true;
+}
 bool removeFrente(desc *p, info *alvo) {
 	if(p->cauda == NULL || p->frente == NULL) {
 		return false;
