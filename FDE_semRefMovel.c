@@ -65,8 +65,6 @@ bool removeFrente(desc *p, info *alvo) {
 		free(p->frente);
 		p->frente = aux;
 		p->frente->defronte = NULL;
-		//p->frente = aux->defronte;
-		//p->frente->atras = NULL;
 	}
 	free(aux);
 	return true;
