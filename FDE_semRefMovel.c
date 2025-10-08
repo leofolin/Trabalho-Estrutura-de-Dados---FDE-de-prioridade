@@ -1,4 +1,3 @@
-#include<stdio.h>
 #include "arq.h"
 
 desc *cria(int tam) {
