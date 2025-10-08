@@ -51,8 +51,8 @@ bool insere(info *nodoInfo, desc *p){
         }
         else{ //se nao for maior nem menor, vai estar no meio
             struct nodo *aux = p->cauda;
-            //while só para quando o novoNodo tem ranking > que aux
-            //a partir disso, posicionar o novoNodo na frente do aux
+            //while só para quando o novoNodo tem ranking < que aux
+            //a partir disso, posicionar o novoNodo atras do aux
             while(novoNodo->dados.ranking >= aux->dados.ranking){
                 aux = aux->defronte;
             }
