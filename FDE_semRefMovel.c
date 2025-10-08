@@ -78,7 +78,7 @@ int tamanhoDaFila(desc *p) {
 
 bool reinicia(desc *p) {
 	if(testaVazia(p)) {
-			return false;
+		return false;
 	}	
 	struct nodo *aux = p->cauda->defronte;
 	while(aux != NULL) {
