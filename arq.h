@@ -20,7 +20,8 @@ typedef struct desc{
     struct nodo *frente;
     struct nodo *cauda;
     struct nodo *refMovel;
-    int tam;
+    int tamInfo;
+    int tamFila;
 } desc;
 
 //================FUNCOES===================
