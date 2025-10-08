@@ -1,4 +1,4 @@
-#include "generica_FDE.h"
+#include "generica_FDE.c"
 
 bool insere(info *nodoInfo, desc *p){
 
