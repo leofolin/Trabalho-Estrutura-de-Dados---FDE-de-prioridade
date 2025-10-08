@@ -22,3 +22,7 @@ bool gerarFila(desc *fila, int n) {
 	}
 	return true;
 }
+
+void randomiza() {
+	system("sort -R" ARQUIVO "> Dataset2");
+}
