@@ -9,7 +9,7 @@ desc *cria(int tam) {
 	if(descricao != NULL) {
 		descricao->cauda = NULL;
 		descricao->frente = NULL;
-		descricao->tam = tam;
+		descricao->tamInfo = tam;
 	}
 	return descricao;
 }
@@ -22,7 +22,7 @@ bool insere(info *nodoInfo, desc *p){
 	struct nodo *novoNodo = NULL;
     novoNodo = malloc(sizeof(struct nodo));
     if (novoNodo == NULL) return false;
-    memcpy(&(novoNodo->dados), nodoInfo, p->tam);
+    memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
     if(p->frente == NULL && p->cauda == NULL){ //caso fila vazia
         novoNodo->defronte = NULL;
         novoNodo->atras = NULL;
@@ -116,7 +116,7 @@ bool removeFrente(desc *p, info *alvo) {
 	if(testaVazia(p)) {
 		return false;
 	}
-	memcpy(alvo, &(p->frente->dados), p->tam);
+	memcpy(alvo, &(p->frente->dados), p->tamInfo);
 
 	struct nodo *aux = p->frente;
 	if(aux == p->cauda) {
