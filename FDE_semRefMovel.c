@@ -1,7 +1,3 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<stdbool.h>
 #include "arq.h"
 
 desc *cria(int tam) {
