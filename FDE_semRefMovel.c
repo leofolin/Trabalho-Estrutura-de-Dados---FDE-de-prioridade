@@ -1,11 +1,9 @@
 #include "generica_FDE.c"
 
 unsigned int insere(info *nodoInfo, desc *p) {
-//    if(testaVazia(p)) return 0;
-
     struct nodo *novoNodo = malloc(sizeof(struct nodo));
     if(novoNodo == NULL) return 0;
-    novoNodo->dados = *nodoInfo;
+    memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
 
     if(p->frente == NULL && p->cauda == NULL) {
         novoNodo->atras = novoNodo->defronte = NULL;
@@ -38,4 +36,4 @@ unsigned int insere(info *nodoInfo, desc *p) {
     aux->atras = novoNodo;
     return i;
 }
-    
+
