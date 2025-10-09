@@ -42,5 +42,5 @@ bool testaVazia(desc *p);
 bool inverte(desc *p);
 
 // CSV
-int gerarFila(desc *fila, int n);
+unsigned int gerarFila(desc *fila, int n);
 void randomiza();
