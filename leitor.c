@@ -1,4 +1,4 @@
-#include "generica_FDE.c"
+#include "arq.h"
 
 #if RANDOM
 void randomiza() {

@@ -1,4 +1,4 @@
-#include "generica_FDE.c"
+#include "arq.h"
 #if REF_MOVEL
 unsigned int insere(info *nodoInfo, desc *p) {
     struct nodo *novoNodo = NULL;

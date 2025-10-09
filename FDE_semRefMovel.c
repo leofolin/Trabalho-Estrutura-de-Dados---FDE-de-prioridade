@@ -1,4 +1,4 @@
-#include "generica_FDE.c"
+#include "arq.h"
 
 unsigned int insere(info *nodoInfo, desc *p) {
     struct nodo *novoNodo = malloc(sizeof(struct nodo));
