@@ -31,8 +31,8 @@ typedef struct desc{
 
 //================FUNCOES===================
 struct desc *cria(int tam);
-int insere(info *novo, desc *p);
-int tamanhoDaFila(desc *p);
+unsigned int insere(info *novo, desc *p);
+unsigned int tamanhoDaFila(desc *p);
 bool reinicia(desc *p);
 struct desc *destroi(desc *p);
 bool buscaNaCauda(desc *p, info *alvo);

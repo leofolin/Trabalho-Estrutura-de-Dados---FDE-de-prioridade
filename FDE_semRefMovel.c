@@ -1,6 +1,6 @@
 #include "generica_FDE.c"
 
-int insere(info *nodoInfo, desc *p) {
+unsigned int insere(info *nodoInfo, desc *p) {
     if(testaVazia(p)) return 0;
 
     struct nodo *novoNodo = malloc(sizeof(struct nodo));

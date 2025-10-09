@@ -31,7 +31,7 @@ bool removeFrente(desc *p, info *alvo) {
 	free(aux);
 	return true;
 }
-int tamanhoDaFila(desc *p) {
+unsigned int tamanhoDaFila(desc *p) {
 	struct nodo *aux = p->cauda;
 	int i = 0;
 	while(aux->defronte != NULL) {
