@@ -16,7 +16,7 @@ bool gerarFila(desc *fila, int n) {
 	}
 
 	info dados;
-	int soma = 0, qtd;
+	unsigned int soma = 0, qtd;
 	for(int i = 0; i < n; i++) {
 		fscanf(file, "%s,%i,%i,%s \n",  dados.nome,
 										&dados.matricula,
