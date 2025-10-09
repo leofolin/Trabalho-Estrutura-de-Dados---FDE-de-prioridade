@@ -8,7 +8,7 @@ void randomiza() {
 #define ARQUIVO "Dataset2.csv"
 #endif
 
-bool gerarFila(desc *fila, int n) {
+unsigned int gerarFila(desc *fila, int n) {
 	FILE *file = fopen(ARQUIVO, "r");
 	if(file == NULL) {
 		printf("Arquivo %s não encontrado", ARQUIVO);
@@ -24,9 +24,9 @@ bool gerarFila(desc *fila, int n) {
 										dados.curso);
 	qtd = insere(&dados,fila);
 	if(!qtd) {
-		return false;
+		return 0;
 	}
 	soma += qtd;
 	}
-	return true;
+	return soma;
 }
