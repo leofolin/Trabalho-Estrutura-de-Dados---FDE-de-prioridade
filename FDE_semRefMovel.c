@@ -1,10 +1,10 @@
 #include "generica_FDE.c"
 
 unsigned int insere(info *nodoInfo, desc *p) {
-    if(testaVazia(p)) return 0;
+//    if(testaVazia(p)) return 0;
 
     struct nodo *novoNodo = malloc(sizeof(struct nodo));
-    if(novoNodo == NULL) return false;
+    if(novoNodo == NULL) return 0;
     novoNodo->dados = *nodoInfo;
 
     if(p->frente == NULL && p->cauda == NULL) {
@@ -28,7 +28,7 @@ unsigned int insere(info *nodoInfo, desc *p) {
     }
 
     struct nodo *aux = p->cauda;
-    int i;
+    unsigned int i;
     for(i = 3; novoNodo->dados.ranking >= aux->dados.ranking; i++) {
         aux = aux->defronte;
     }
