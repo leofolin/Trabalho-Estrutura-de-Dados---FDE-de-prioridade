@@ -40,3 +40,7 @@ bool buscaNaFrente(desc *p, info *alvo);
 bool removeFrente(desc *p, info *alvo);
 bool testaVazia(desc *p);
 bool inverte(desc *p);
+
+// CSV
+int gerarFila(desc *fila, int n);
+void randomiza();
