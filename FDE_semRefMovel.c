@@ -1,55 +1,41 @@
 #include "generica_FDE.c"
 
-bool insere(info *nodoInfo, desc *p){
+int insere(info *nodoInfo, desc *p) {
+    if(testaVazia(p)) return 0;
 
-    if (testaVazia(p)) return false;
+    struct nodo *novoNodo = malloc(sizeof(struct nodo));
+    if(novoNodo == NULL) return false;
+    novoNodo->dados = *nodoInfo;
 
-    bool ok = false;
-	struct nodo *novoNodo = NULL;
-    novoNodo = malloc(sizeof(struct nodo));
-    if (novoNodo == NULL) return false;
-    memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
-    if(p->frente == NULL && p->cauda == NULL){ //caso fila vazia
-        novoNodo->defronte = NULL;
+    if(p->frente == NULL && p->cauda == NULL) {
+        novoNodo->atras = novoNodo->defronte = NULL;
+        p->frente = p->cauda = novoNodo;
+        return 1;
+    }
+    if(novoNodo->dados.ranking < p->cauda->dados.ranking) {
         novoNodo->atras = NULL;
-        p->frente = novoNodo;
+        novoNodo->defronte = p->cauda;
+        p->cauda->atras = novoNodo;
         p->cauda = novoNodo;
-        ok = true;
+        return 2;
     }
-    else{
-        //verifica se o novo elemento é o de menor prioridade
-        //se for, vira a nova cauda
-        if(novoNodo->dados.ranking <= p->cauda->dados.ranking){
-            novoNodo->atras = NULL;
-            novoNodo->defronte = p->cauda;
-            p->cauda->atras = novoNodo;
-            p->cauda = novoNodo;
-            ok = true;
-        }
-        //verifica se o novo elemento é o de maior prioridade
-        //se for, vira a nova frente da fila
-        else if(novoNodo->dados.ranking >= p->frente->dados.ranking){
-            novoNodo->defronte = NULL;
-            novoNodo->atras = p->frente;
-            p->frente->defronte = novoNodo;
-            p->frente = novoNodo;
-            ok = true;
-        }
-        else{ //se nao for maior nem menor, vai estar no meio
-            struct nodo *aux = p->cauda;
-            //while só para quando o novoNodo tem ranking < que aux
-            //a partir disso, posicionar o novoNodo atras do aux
-            while(novoNodo->dados.ranking >= aux->dados.ranking){
-                aux = aux->defronte;
-            }
-            novoNodo->atras = aux->atras;
-            novoNodo->defronte = aux;
-            aux->atras->defronte = novoNodo;
-            aux->atras = novoNodo;
-            ok = true;
-        }
+    if(novoNodo->dados.ranking >= p->frente->dados.ranking) {
+        novoNodo->defronte = NULL;
+        novoNodo->atras = p->frente;
+        p->frente->defronte = novoNodo;
+        p->frente = novoNodo;
+        return 3;
     }
-    return ok;
+
+    struct nodo *aux = p->cauda;
+    int i;
+    for(i = 3; novoNodo->dados.ranking >= aux->dados.ranking; i++) {
+        aux = aux->defronte;
+    }
+    novoNodo->atras = aux->atras;
+    novoNodo->defronte = aux;
+    aux->atras->defronte = novoNodo;
+    aux->atras = novoNodo;
+    return i;
 }
-
-
+    
