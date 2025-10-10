@@ -1,5 +1,6 @@
 #include "arq.h"
 #if REF_MOVEL
+
 unsigned int insere(info *nodoInfo, desc *p) {
     struct nodo *novoNodo = NULL;
     novoNodo = malloc(sizeof(struct nodo));
@@ -38,14 +39,17 @@ unsigned int insere(info *nodoInfo, desc *p) {
     if(novoNodo->dados.ranking == p->refMovel->dados.ranking) {
         novoNodo->defronte = p->refMovel;
         novoNodo->atras = p->refMovel->atras;
-        p->refMovel->atras->defronte = novoNodo;
+        if(p->refMovel->atras != NULL)
+            p->refMovel->atras->defronte = novoNodo;
+        else
+            p->cauda= novoNodo;
         p->refMovel->atras = novoNodo;
         //nao precisa atualizar refMovel
-        return 4
+        return 4;
     }
-    unsigned int i;
+    unsigned int i = 4;
     if(novoNodo->dados.ranking < p->refMovel->dados.ranking) {
-        for(i = 4; novoNodo->dados.ranking < p->refMovel->dados.ranking; i++) {
+        for(; novoNodo->dados.ranking < p->refMovel->dados.ranking; i++) {
             p->refMovel = p->refMovel->atras;
             //ref vai para tras ate novoNodo.ranking ser maior
         }
@@ -55,15 +59,13 @@ unsigned int insere(info *nodoInfo, desc *p) {
         //mudar para que ele fique sempre atras quando for igual (mudar para inserir ele atras de ref)
 
         //coloca novoNodo na frente de refMovel
-        novoNodo->atras = p->refMovel;
-        novoNodo->defronte = p->refMovel->defronte;
-        p->refMovel->defronte->atras = novoNodo;
-        p->refMovel->defronte = novoNodo;
+        novoNodo->defronte = p->refMovel;
+        novoNodo->atras = p->refMovel->atras;
+        p->refMovel->atras->defronte = novoNodo;
+        p->refmovel->atras = novoNodo;
         p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
-        return i;
-    }
-    if(novoNodo->dados.ranking > p->refMovel->dados.ranking) {
-        for(i = 4; novoNodo->dados.ranking > p->refMovel->dados.ranking; i++) {
+    } else if(novoNodo->dados.ranking > p->refMovel->dados.ranking) {
+        for(; novoNodo->dados.ranking > p->refMovel->dados.ranking; i++) {
             p->refMovel = p->refMovel->defronte;
             //ref vai para frente ate ser maior que novoNodo.ranking
         }
@@ -73,7 +75,7 @@ unsigned int insere(info *nodoInfo, desc *p) {
         p->refMovel->atras->defronte = novoNodo;
         p->refMovel->atras = novoNodo;
         p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
-        return i;
     }
+    return i;
 }
 #endif

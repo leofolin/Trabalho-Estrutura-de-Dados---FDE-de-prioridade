@@ -2,7 +2,7 @@
 
 #if RANDOM
 void randomiza() {
-    system("sort -R" ARQUIVO "> Dataset2.csv");
+    system("sort -R " ARQUIVO "> Dataset2.csv");
 }
 #undef ARQUIVO
 #define ARQUIVO "Dataset2.csv"
@@ -12,7 +12,7 @@ unsigned int gerarFila(desc *fila, int n) {
     FILE *file = fopen(ARQUIVO, "r");
     if(file == NULL) {
         printf("Arquivo %s não encontrado", ARQUIVO);
-        return false;
+        return 0;
     }
 
     info dados;
