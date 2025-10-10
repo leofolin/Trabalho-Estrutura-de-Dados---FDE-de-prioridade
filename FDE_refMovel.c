@@ -48,20 +48,15 @@ bool insere(info *nodoInfo, desc *p){
                 ok = true;
             }
             else if(novoNodo->dados.ranking < p->refMovel->dados.ranking){
-                while(novoNodo->dados.ranking < p->refMovel->dados.ranking){
+                while(novoNodo->dados.ranking <= p->refMovel->atras->dados.ranking){
                     p->refMovel = p->refMovel->atras;
-                    //ref vai para tras ate novoNodo.ranking ser maior
+                    //ref vai para tras ate novoNodo.ranking ser maior que refMovel->atras
                 }
-
-                //===============PROBLEMA==================
-                //aqui embaixo, o novoNodo pode ficar na frente mesmo que ele seja igual ao ref
-                //mudar para que ele fique sempre atras quando for igual (mudar para inserir ele atras de ref)
-                
-                //coloca novoNodo na frente de refMovel
-                novoNodo->atras = p->refMovel;
-                novoNodo->defronte = p->refMovel->defronte;
-                p->refMovel->defronte->atras = novoNodo;
-                p->refMovel->defronte = novoNodo;
+                //coloca novoNodo atras do refMovel
+                novoNodo->defronte = p->refMovel;
+                novoNodo->atras = p->refMovel->atras;
+                p->refMovel->atras->defronte = novoNodo;
+                p->refMovel->atras = novoNodo;
                 p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
                 ok = true;
             }
