@@ -8,6 +8,7 @@ unsigned int insere(info *nodoInfo, desc *p) {
     if(p->frente == NULL && p->cauda == NULL) {
         novoNodo->atras = novoNodo->defronte = NULL;
         p->frente = p->cauda = novoNodo;
+        free(novoNodo);
         return 1;
     }
     if(novoNodo->dados.ranking < p->cauda->dados.ranking) {
@@ -15,6 +16,7 @@ unsigned int insere(info *nodoInfo, desc *p) {
         novoNodo->defronte = p->cauda;
         p->cauda->atras = novoNodo;
         p->cauda = novoNodo;
+        free(novoNodo);
         return 2;
     }
     if(novoNodo->dados.ranking >= p->frente->dados.ranking) {
@@ -22,6 +24,7 @@ unsigned int insere(info *nodoInfo, desc *p) {
         novoNodo->atras = p->frente;
         p->frente->defronte = novoNodo;
         p->frente = novoNodo;
+        free(novoNodo);
         return 3;
     }
 
@@ -34,6 +37,7 @@ unsigned int insere(info *nodoInfo, desc *p) {
     novoNodo->defronte = aux;
     aux->atras->defronte = novoNodo;
     aux->atras = novoNodo;
+    free(novoNodo);
     return i;
 }
 
