@@ -31,8 +31,8 @@ typedef struct desc{
 
 //================FUNCOES===================
 struct desc *cria(int tam);
-bool insere(info *novo, desc *p);
-int tamanhoDaFila(desc *p);
+unsigned int insere(info *novo, desc *p);
+unsigned int tamanhoDaFila(desc *p);
 bool reinicia(desc *p);
 struct desc *destroi(desc *p);
 bool buscaNaCauda(desc *p, info *alvo);
@@ -40,3 +40,7 @@ bool buscaNaFrente(desc *p, info *alvo);
 bool removeFrente(desc *p, info *alvo);
 bool testaVazia(desc *p);
 bool inverte(desc *p);
+
+// CSV
+unsigned int gerarFila(desc *fila, int n);
+void randomiza();
