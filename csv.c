@@ -24,9 +24,11 @@ unsigned int gerarFila(desc *fila, int n) {
                dados.curso);
         qtd = insere(&dados,fila);
         if(!qtd) {
+            fclose(file);
             return 0;
         }
         soma += qtd;
     }
+    fclose(file);
     return soma;
 }
