@@ -80,3 +80,9 @@ bool buscaNaFrente(desc *p, info *alvo) {
 bool testaVazia(desc *p) {
     return p->cauda == NULL || p->frente == NULL;
 }
+
+void printaNodo(info dados) {
+    printf("Nome: %s, Matrícula: %i, Ranking: %i, Curso: %s"
+           ,dados.nome, dados.matricula, dados.ranking, dados.curso);
+
+}

@@ -4,6 +4,7 @@
 #include<stdbool.h>
 
 #define ARQUIVO "dataset_v1.csv"
+#define NUMERO 500
 #define REF_MOVEL 0
 #define RANDOM 0
 
@@ -40,7 +41,11 @@ bool buscaNaFrente(desc *p, info *alvo);
 bool removeFrente(desc *p, info *alvo);
 bool testaVazia(desc *p);
 bool inverte(desc *p);
+void printaNodo(info dados);
 
 // CSV
 unsigned int gerarFila(desc *fila, int n);
 void randomiza();
+
+// main
+void menu();
