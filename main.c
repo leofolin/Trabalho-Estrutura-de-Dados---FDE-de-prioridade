@@ -29,6 +29,9 @@ int main() {
             buscaNaFrente(fila, &dados);
             printf("Nodo encontrado:");
             printaNodo(dados);
+            break;
+        default:
+            printf("Opção inválida. Tente novamente");
         }
     } while(opcao != 0);
 }
