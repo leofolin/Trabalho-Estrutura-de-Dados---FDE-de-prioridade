@@ -33,7 +33,7 @@ typedef struct desc {
 struct desc *cria(int tam);
 int insereSemRefMovel(info *novo, desc *p);
 int insereComRefMovel(info *novo, desc *p);
-int *insere(info *novo, desc *p);
+int (*insere)(info *novo, desc *p);
 unsigned int tamanhoDaFila(desc *p);
 bool reinicia(desc *p);
 struct desc *destroi(desc *p);

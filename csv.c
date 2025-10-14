@@ -9,7 +9,7 @@ void randomiza() {
 unsigned int gerarFila(desc *fila, int n) {
     FILE *file = fopen(ARQUIVO, "r");
     if(file == NULL) {
-        printf("Arquivo %s não encontrado", ARQUIVO);
+        printf("Arquivo %s não encontrado\n", ARQUIVO);
         return 0;
     }
 
@@ -18,11 +18,11 @@ unsigned int gerarFila(desc *fila, int n) {
     int qtd;
     fscanf(file, "Nome,Matrícula,Ranking,Curso\n");
     for(int i = 0; i < n; i++) {
-        fscanf(file, "%49[^,],%i,%i,%19[^\n]\n",  dados.nome,
+        fscanf(file, "%49[^,],%i,%i,%19[^\n]",  dados.nome,
                &dados.matricula,
                &dados.ranking,
                dados.curso);
-        qtd = *insere(&dados,fila);
+        qtd = insere(&dados,fila);
         if(qtd == -1) {
             fclose(file);
             return 0;

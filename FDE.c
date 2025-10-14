@@ -73,15 +73,15 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
     //refMovel, se for, vai indo pra tras até achar o lugar certo
     //se for maior, vai indo pra frente até achar o lugar certo
     //se os rankings forem iguais, o mais novo fica atras
-    int i = 0;
     if(novoNodo->dados.PRIORIDADE == p->refMovel->dados.PRIORIDADE) {
         novoNodo->defronte = p->refMovel;
         novoNodo->atras = p->refMovel->atras;
         p->refMovel->atras->defronte = novoNodo;
         p->refMovel->atras = novoNodo;
         //nao precisa atualizar refMovel
-        return i;
+        return 0;
     }
+    int i = 0;
     if(novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE) {
         while(novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE) {
             p->refMovel = p->refMovel->atras;
