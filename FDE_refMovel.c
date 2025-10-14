@@ -4,7 +4,7 @@
 unsigned int insereRefMovel(info *nodoInfo, desc *p){
     struct nodo *novoNodo = NULL;
     novoNodo = malloc(sizeof(struct nodo));
-    if(novoNodo == NULL) return false;
+    if(novoNodo == NULL) return 0;
     memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
     
     //verifica fila vazia, se sim, só adiciona
