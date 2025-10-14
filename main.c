@@ -3,7 +3,7 @@
 int main() {
     struct desc *fila = cria(sizeof(info));
     unsigned int qtd = gerarFila(fila, NUMERO);
-    printf("Criada fila com %i elementos, com %u iterações", NUMERO, qtd);
+    printf("Criada fila com %i elementos, com %u iterações\n", NUMERO, qtd);
     int opcao = -1;
     do {
         menu();
