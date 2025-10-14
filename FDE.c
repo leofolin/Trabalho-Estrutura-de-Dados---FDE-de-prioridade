@@ -193,7 +193,7 @@ bool testaVazia(desc *p) {
 }
 
 void printaNodo(info dados) {
-    printf("Nome: %s, Matrícula: %i, Ranking: %i, Curso: %s"
+    printf("Nome: %s, Matrícula: %i, Ranking: %i, Curso: %s\n"
            ,dados.nome, dados.matricula, dados.ranking, dados.curso);
 
 }
