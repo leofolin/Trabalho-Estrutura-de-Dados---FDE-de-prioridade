@@ -12,13 +12,13 @@ int main() {
         switch(o) {
         case(0):
             printf("Saindo..");
-            break;
+            return 0;
         case(1):
             estatisticas();
-            break;
+            return 1;
         case(2):
             menu();
-            break;
+            return 2;
         default:
             printf("Opção inválida. Tente novamente\n");
         }
