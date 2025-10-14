@@ -62,22 +62,22 @@ bool removeFrente(desc *p, info *alvo) {
     }
     memcpy(alvo, &(p->frente->dados), p->tamInfo);
 
-    struct nodo *aux = p->frente->atras;
+    struct nodo *aux = p->frente;
     if(aux == p->cauda) {
         p->frente = p->cauda = NULL;
     } else {
-        free(p->frente);
-        p->frente = aux;
+        p->frente = aux->atras;
         p->frente->defronte = NULL;
     }
+    free(aux);
     return true;
 }
 unsigned int tamanhoDaFila(desc *p) {
     struct nodo *aux = p->cauda;
     int i = 0;
     while(aux->defronte != NULL) {
-        aux = aux->defronte;
         i++;
+        aux = aux->defronte;
     }
     return i;
 }
