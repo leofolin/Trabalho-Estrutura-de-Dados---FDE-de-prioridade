@@ -28,25 +28,25 @@ int main() {
 void estatisticas() {
     printf("Comparação de desempenho entre as filas com e sem referencial móvel:\n");
     printf("| Tamanho | Tipo de Fila | Qtd. Iterações | Média | Melhoria (%%) | \n");
-    unsigned int qtd_sem, qtd_com;
+    unsigned int qtd_semRefMovel, qtd_comRefMovel;
     float media;
     struct desc *fila;
     fila = cria(sizeof(info));
     for(int i = 500; i <= 9000; i+=500) {
         insere = insereSemRefMovel;
-        qtd_sem = gerarFila(fila, i);
+        qtd_semRefMovel = gerarFila(fila, i);
         media = (float) qtd_sem/i;
         printf("| %-7i |   %-10s | %-14u | %-9.4f | %-12s |\n",
-               i, "Sem Ref.", qtd_sem, media, "");
+               i, "Sem Ref.", qtd_semRefMovel, media, "");
 
         reinicia(fila);
 
         int numIter_com = 0;
         insere = insereComRefMovel;
-        qtd_com = gerarFila(fila, i);
-        media = (float) qtd_com/i;
+        qtd_comRefMovel = gerarFila(fila, i);
+        media = (float) qtd_comRefMovel/i;
         printf("| %-7i |   %-10s | %-14u | %-9.4f |   %-9.2f%% |\n",
-               i, "Com Ref.", qtd_com, media, (float) (qtd_sem - qtd_com)/qtd_sem * 100);
+               i, "Com Ref.", qtd_comRefMovel, media, (float) (qtd_semRefMovel - qtd_comRefMovel)/qtd_semRefMovel * 100);
 
         reinicia(fila);
     }
