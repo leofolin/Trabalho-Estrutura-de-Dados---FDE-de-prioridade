@@ -1,27 +1,34 @@
 #include "arq.h"
 
 int main() {
+    randomiza();
     printf("Escolha:\n"
            "0 - Sair\n"
            "1 - Mostrar estatísticas\n"
-           "2 - Mostrar Menu\n");
+           "2 - Mostrar menu\n");
     int o;
-    scanf("%i", &o);
-    switch(o) {
-    case(0):
-        printf("Saindo..");
-        break;
-    case(1):
-        estatisticas();
-        break;
-    case(2):
-        menu();
-        break;
-    }
+    do {
+        scanf("%i", &o);
+        switch(o) {
+        case(0):
+            printf("Saindo..");
+            break;
+        case(1):
+            estatisticas();
+            break;
+        case(2):
+            menu();
+            break;
+        default:
+            printf("Opção inválida. Tente novamente\n");
+        }
+    } while(o != 0);
 }
 
 void estatisticas() {
-        
+    for(int i = 500; i <= 9000; i+=500) {
+
+    }
 }
 void menu() {
     struct desc *fila = cria(sizeof(info));
@@ -43,23 +50,24 @@ void menu() {
             return;
         case(1):
             removeFrente(fila, &dados);
-            printf("Nodo removido:");
+            printf("Nodo removido:\n");
             printaNodo(dados);
+            break;
         case(2):
-            printf("Tamanho: %u", tamanhoDaFila(fila));
+            printf("Tamanho: %u\n", tamanhoDaFila(fila));
             break;
         case(3):
             buscaNaCauda(fila, &dados);
-            printf("Nodo encontrado:");
+            printf("Nodo encontrado:\n");
             printaNodo(dados);
             break;
         case(4):
             buscaNaFrente(fila, &dados);
-            printf("Nodo encontrado:");
+            printf("Nodo encontrado:\n");
             printaNodo(dados);
             break;
         default:
-            printf("Opção inválida. Tente novamente");
+            printf("Opção inválida. Tente novamente\n");
         }
     } while(opcao != 0);
 }
