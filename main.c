@@ -31,9 +31,19 @@ void estatisticas() {
     }
 }
 void menu() {
+    printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com");
+    int temRefMovel;
+    scanf("%i", &temRefMovel);
+    if(temRefMovel) {
+        insere = insereComRefMovel;
+    } else {
+        insere = insereSemRefMovel;
+    }
+
     struct desc *fila = cria(sizeof(info));
     unsigned int qtd = gerarFila(fila, NUMERO);
     printf("Criada fila com %i elementos, através de %i iterações\n", NUMERO, qtd);
+
     int opcao = -1;
     do {
         printf("Escolha uma das opções:\n");
