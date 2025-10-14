@@ -8,7 +8,7 @@ unsigned int insereRefMovel(info *nodoInfo, desc *p){
     memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
     
     //verifica fila vazia, se sim, só adiciona
-    if(p->frente == NULL && p->cauda == NULL){
+    if(p->frente == p->cauda == NULL){
         novoNodo->defronte = NULL;
         novoNodo->atras = NULL;
         p->frente = novoNodo;
