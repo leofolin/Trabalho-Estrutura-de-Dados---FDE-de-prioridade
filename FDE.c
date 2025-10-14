@@ -1,8 +1,6 @@
 #include "arq.h"
 // Funções genéricas usadas nas duas implementações de fila
-
-#if REF_MOVEL == 0
-unsigned int insere(info *nodoInfo, desc *p) {
+unsigned int insereSemRefMovel(info *nodoInfo, desc *p) {
     struct nodo *novoNodo = malloc(sizeof(struct nodo));
     if(novoNodo == NULL) return 0;
     memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
@@ -38,11 +36,10 @@ unsigned int insere(info *nodoInfo, desc *p) {
     aux->atras = novoNodo;
     return i;
 }
-#elif REF_MOVEL == 1
 unsigned int insere(info *nodo, desc *p) {
     return 0;
 }
-#endif
+
 struct desc *cria(int tam) {
     desc *descricao = malloc(sizeof(desc));
     if(descricao != NULL) {
