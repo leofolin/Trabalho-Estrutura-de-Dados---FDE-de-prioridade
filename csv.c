@@ -14,14 +14,15 @@ unsigned int gerarFila(desc *fila, int n) {
     }
 
     info dados;
-    unsigned int soma = 0, qtd;
-    fscanf(file, "Nome,Matrícula,Ranking,Curso");
+    unsigned int soma = 0;
+    int qtd;
+    fscanf(file, "Nome,Matrícula,Ranking,Curso\n");
     for(int i = 0; i < n; i++) {
-        fscanf(file, "%49[^,],%i,%i,%49[^\n]\n",  dados.nome,
+        fscanf(file, "%49[^,],%i,%i,%19[^\n]\n",  dados.nome,
                &dados.matricula,
                &dados.ranking,
                dados.curso);
-        qtd = insere(&dados,fila);
+        qtd = *insere(&dados,fila);
         if(qtd == -1) {
             fclose(file);
             return 0;

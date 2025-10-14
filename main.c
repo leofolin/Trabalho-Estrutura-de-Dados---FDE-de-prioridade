@@ -26,7 +26,7 @@ void estatisticas() {
 void menu() {
     struct desc *fila = cria(sizeof(info));
     unsigned int qtd = gerarFila(fila, NUMERO);
-    printf("Criada fila com %i elementos, através de %u iterações\n", NUMERO, qtd);
+    printf("Criada fila com %i elementos, através de %i iterações\n", NUMERO, qtd);
     int opcao = -1;
     do {
         printf("Escolha uma das opções:\n");
