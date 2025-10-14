@@ -1,12 +1,10 @@
 #include "arq.h"
 
-#if RANDOM
 void randomiza() {
-    system("sort -R " ARQUIVO "> Dataset2.csv");
+    system("echo \"Nome,Matrícula,Ranking,Curso\" > tmp.csv;"
+           "tail --lines=+2 " ARQUIVO " | sort --random-sort >> tmp.csv;"
+           "mv --force tmp.csv " ARQUIVO);
 }
-#undef ARQUIVO
-#define ARQUIVO "Dataset2.csv"
-#endif
 
 unsigned int gerarFila(desc *fila, int n) {
     FILE *file = fopen(ARQUIVO, "r");
