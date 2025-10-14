@@ -19,6 +19,10 @@ int main() {
         break;
     }
 }
+
+void estatisticas() {
+        
+}
 void menu() {
     struct desc *fila = cria(sizeof(info));
     unsigned int qtd = gerarFila(fila, NUMERO);
@@ -36,7 +40,7 @@ void menu() {
         switch(opcao) {
         case(0):
             main();
-            break;
+            return;
         case(1):
             removeFrente(fila, &dados);
             printf("Nodo removido:");
