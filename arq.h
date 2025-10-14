@@ -8,25 +8,24 @@
 #define REF_MOVEL 0
 #define RANDOM 0
 #define PRIORIDADE ranking
-typedef struct{
+
+typedef struct {
     char nome[50];
     int matricula;
     int ranking;
     char curso[20];
-}info;
+} info;
 
-struct nodo{
+struct nodo {
     info dados;
     struct nodo *atras;
     struct nodo *defronte;
 };
 
-typedef struct desc{
+typedef struct desc {
     struct nodo *frente;
     struct nodo *cauda;
-    #if REF_MOVEL
-        struct nodo *refMovel;
-    #endif
+    struct nodo *refMovel;
     int tamInfo;
 } desc;
 
