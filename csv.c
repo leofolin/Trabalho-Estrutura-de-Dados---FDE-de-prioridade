@@ -18,7 +18,7 @@ unsigned int gerarFila(desc *fila, int n) {
     info dados;
     unsigned int soma = 0, qtd;
     for(int i = 0; i < n; i++) {
-        fscanf(file, "%s,%i,%i,%s \n",  dados.nome,
+        fscanf(file, "%49[^,],%i,%i,%49[^\n]\n",  dados.nome,
                &dados.matricula,
                &dados.ranking,
                dados.curso);
