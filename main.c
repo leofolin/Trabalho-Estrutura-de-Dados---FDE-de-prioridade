@@ -45,7 +45,7 @@ void estatisticas() {
         insere = insereComRefMovel;
         qtd_com = gerarFila(fila, i);
         media = (float) qtd_com/i;
-        printf("| %-7i |   %-10s | %-14u | %-9.4f | %-11.2f%% |\n",
+        printf("| %-7i |   %-10s | %-14u | %-9.4f |   %-9.2f%% |\n",
                i, "Com Ref.", qtd_com, media, (float) (qtd_sem - qtd_com)/qtd_sem * 100);
 
         reinicia(fila);
