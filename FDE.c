@@ -1,5 +1,5 @@
 #include "arq.h"
-// Funções genéricas usadas nas duas implementações de fila
+
 int insereSemRefMovel(info *nodoInfo, desc *p) {
     struct nodo *novoNodo = malloc(sizeof(struct nodo));
     if(novoNodo == NULL) return -1;
@@ -49,6 +49,7 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
         novoNodo->atras = NULL;
         p->frente = novoNodo;
         p->cauda = novoNodo;
+        p->refMovel = novoNodo;
         return 0;
     }
     //verifica se o ranking do novo aluno é menor que o da cauda
@@ -111,6 +112,7 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
         return i;
     }
 }
+int (*insere)(info *novo, desc *p) = NULL;
 
 struct desc *cria(int tam) {
     desc *descricao = malloc(sizeof(desc));
