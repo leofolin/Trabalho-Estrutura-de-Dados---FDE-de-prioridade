@@ -162,6 +162,7 @@ bool reinicia(desc *p) {
     free(p->cauda);
     p->frente = NULL;
     p->cauda = NULL;
+    p->refMovel = NULL;
     return true;
 }
 
