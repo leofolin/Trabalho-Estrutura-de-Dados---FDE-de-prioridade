@@ -1,12 +1,22 @@
 #include "arq.h"
 
 int main() {
+    printf("Escolha:"
+           "0 - Mostrar estatísticas"
+           "1 - Mostrar Menu");
+    int o;
+    scanf("%i", &o);
+    switch(o) {
+    case(0):
+        break;
+    case(1):
+        menu();
+    }
+}
+void menu() {
     struct desc *fila = cria(sizeof(info));
     unsigned int qtd = gerarFila(fila, NUMERO);
     printf("Criada fila com %i elementos, com %u iterações\n", NUMERO, qtd);
-    menu();
-}
-void menu() {
     int opcao = -1;
     do {
         printf("Escolha uma das opções:\n");
@@ -14,10 +24,11 @@ void menu() {
                "1 - Remover nodo da frente\n"
                "2 - Mostrar tamanho da fila\n"
                "3 - Mostrar elemento da cauda\n"
-               scanf("%i", &opcao);
-               info dados;
+               "4 - Mostrar elemento da frente\n");
+        scanf("%i", &opcao);
+        info dados;
         switch(opcao) {
-    case(0):
+        case(0):
             printf("Saindo...");
             break;
         case(1):
@@ -41,5 +52,4 @@ void menu() {
             printf("Opção inválida. Tente novamente");
         }
     } while(opcao != 0);
-}          "4 - Mostrar elemento da frente\n");
 }
