@@ -10,14 +10,14 @@ unsigned int insereSemRefMovel(info *nodoInfo, desc *p) {
         p->frente = p->cauda = novoNodo;
         return 1;
     }
-    if(novoNodo->dados.ranking < p->cauda->dados.ranking) {
+    if(novoNodo->dados.PRIORIDADE < p->cauda->dados.PRIORIDADE) {
         novoNodo->atras = NULL;
         novoNodo->defronte = p->cauda;
         p->cauda->atras = novoNodo;
         p->cauda = novoNodo;
         return 2;
     }
-    if(novoNodo->dados.ranking >= p->frente->dados.ranking) {
+    if(novoNodo->dados.PRIORIDADE >= p->frente->dados.PRIORIDADE) {
         novoNodo->defronte = NULL;
         novoNodo->atras = p->frente;
         p->frente->defronte = novoNodo;
@@ -27,7 +27,7 @@ unsigned int insereSemRefMovel(info *nodoInfo, desc *p) {
 
     struct nodo *aux = p->cauda;
     unsigned int i;
-    for(i = 3; novoNodo->dados.ranking >= aux->dados.ranking; i++) {
+    for(i = 3; novoNodo->dados.PRIORIDADE >= aux->dados.PRIORIDADE; i++) {
         aux = aux->defronte;
     }
     novoNodo->atras = aux->atras;
@@ -54,7 +54,7 @@ unsigned int insereComRefMovel(info *nodoInfo, desc *p){
     else {
         //verifica se o ranking do novo aluno é menor que o da cauda
         //se for, adiciona ele na cauda
-        if(novoNodo->dados.ranking < p->cauda->dados.ranking){
+        if(novoNodo->dados.PRIORIDADE < p->cauda->dados.PRIORIDADE){
             novoNodo->defronte = p->cauda;
             novoNodo->atras = NULL;
             p->cauda->atras = novoNodo;
@@ -63,7 +63,7 @@ unsigned int insereComRefMovel(info *nodoInfo, desc *p){
         }
         //verifica se o ranking do novo aluno é maior que o da frente da fila
         //se for, adiciona ele na frente da fila, vira o novo frente
-        else if(novoNodo->dados.ranking > p->frente->dados.ranking){
+        else if(novoNodo->dados.PRIORIDADE > p->frente->dados.PRIORIDADE){
             novoNodo->atras = p->frente;
             novoNodo->defronte = NULL;
             p->frente->defronte = novoNodo;
@@ -76,7 +76,7 @@ unsigned int insereComRefMovel(info *nodoInfo, desc *p){
         //se os rankings forem iguais, o mais novo fica atras
         else{
             int i = 4;
-            if(novoNodo->dados.ranking == p->refMovel->dados.ranking){
+            if(novoNodo->dados.PRIORIDADE == p->refMovel->dados.PRIORIDADE){
                 novoNodo->defronte = p->refMovel;
                 novoNodo->atras = p->refMovel->atras;
                 p->refMovel->atras->defronte = novoNodo;
@@ -84,8 +84,8 @@ unsigned int insereComRefMovel(info *nodoInfo, desc *p){
                 //nao precisa atualizar refMovel
                 return i;
             }
-            else if(novoNodo->dados.ranking < p->refMovel->dados.ranking){
-                while(novoNodo->dados.ranking < p->refMovel->dados.ranking){
+            else if(novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE){
+                while(novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE){
                     p->refMovel = p->refMovel->atras;
                     i++;
                     //ref vai para tras ate novoNodo.ranking ser maior
@@ -98,8 +98,8 @@ unsigned int insereComRefMovel(info *nodoInfo, desc *p){
                 p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
                 return i;
             }
-            else if(novoNodo->dados.ranking > p->refMovel->dados.ranking){
-                while(novoNodo->dados.ranking > p->refMovel->dados.ranking){
+            else if(novoNodo->dados.PRIORIDADE > p->refMovel->dados.PRIORIDADE){
+                while(novoNodo->dados.PRIORIDADE > p->refMovel->dados.PRIORIDADE){
                     p->refMovel = p->refMovel->defronte;
                     i++;
                     //ref vai para frente ate ser maior que novoNodo.ranking
