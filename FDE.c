@@ -70,7 +70,6 @@ bool removeFrente(desc *p, info *alvo) {
         p->frente = aux;
         p->frente->defronte = NULL;
     }
-    free(aux);
     return true;
 }
 unsigned int tamanhoDaFila(desc *p) {
