@@ -7,7 +7,7 @@
 #define NUMERO 500
 #define REF_MOVEL 0
 #define RANDOM 0
-
+#define PRIORIDADE ranking
 typedef struct{
     char nome[50];
     int matricula;
