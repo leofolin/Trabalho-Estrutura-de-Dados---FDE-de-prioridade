@@ -4,7 +4,6 @@
 #include<stdbool.h>
 
 #define ARQUIVO "dataset_v1.csv"
-#define NUMERO 500
 #define REF_MOVEL 0
 #define RANDOM 0
 #define PRIORIDADE ranking

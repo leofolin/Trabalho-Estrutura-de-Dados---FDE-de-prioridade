@@ -26,8 +26,24 @@ int main() {
 }
 
 void estatisticas() {
+    printf("Comparação de desempenho entre as filas com e sem referencial móvel:\n");
+    unsigned int qtd;
+    float media;
+    struct desc *fila = cria(sizeof(info));
     for(int i = 500; i <= 9000; i+=500) {
+        int numIter_sem = 0;
+        insere = insereSemRefMovel;
+        qtd = gerarFila(fila, i);
+        media = (float) qtd/i;
 
+        reinicia(fila);
+
+        int numIter_com = 0;
+        insere = insereComRefMovel;
+
+        qtd = gerarFila(fila, i);
+        media = (float) qtd/i;
+        
     }
 }
 void menu() {
@@ -39,9 +55,12 @@ void menu() {
     } else {
         insere = insereSemRefMovel;
     }
+    printf("Deseja que a fila tenha quantos elementos?");
+    int n;
+    scanf("%i", &n);
 
     struct desc *fila = cria(sizeof(info));
-    unsigned int qtd = gerarFila(fila, NUMERO);
+    unsigned int qtd = gerarFila(fila, n);
     printf("Criada fila com %i elementos, através de %i iterações\n", NUMERO, qtd);
 
     int opcao = -1;
