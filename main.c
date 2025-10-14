@@ -35,7 +35,7 @@ void estatisticas() {
     for(int i = 500; i <= 9000; i+=500) {
         insere = insereSemRefMovel;
         qtd_semRefMovel = gerarFila(fila, i);
-        media = (float) qtd_sem/i;
+        media = (float) qtd_semRefMovel/i;
         printf("| %-7i |   %-10s | %-14u | %-9.4f | %-12s |\n",
                i, "Sem Ref.", qtd_semRefMovel, media, "");
 
