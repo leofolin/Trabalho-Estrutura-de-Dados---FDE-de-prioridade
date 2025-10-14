@@ -1,7 +1,7 @@
 #include "generica_FDE.c"
 #if REF_MOVEL
-bool insere(info *nodoInfo, desc *p){
-    bool ok = false;
+
+unsigned int insereRefMovel(info *nodoInfo, desc *p){
     struct nodo *novoNodo = NULL;
     novoNodo = malloc(sizeof(struct nodo));
     if(novoNodo == NULL) return false;
@@ -13,7 +13,7 @@ bool insere(info *nodoInfo, desc *p){
         novoNodo->atras = NULL;
         p->frente = novoNodo;
         p->cauda = novoNodo;
-        ok = true;
+        return 1;
     }
     else {
         //verifica se o ranking do novo aluno é menor que o da cauda
@@ -23,7 +23,7 @@ bool insere(info *nodoInfo, desc *p){
             novoNodo->atras = NULL;
             p->cauda->atras = novoNodo;
             p->cauda = novoNodo;
-            ok = true;
+            return 2;
         }
         //verifica se o ranking do novo aluno é maior que o da frente da fila
         //se for, adiciona ele na frente da fila, vira o novo frente
@@ -32,37 +32,40 @@ bool insere(info *nodoInfo, desc *p){
             novoNodo->defronte = NULL;
             p->frente->defronte = novoNodo;
             p->frente = novoNodo;
-            ok = true;
+            return 3;
         }
         //se estiver no meio da fila, verifica se o ranking é menor do que do
         //refMovel, se for, vai indo pra tras até achar o lugar certo
         //se for maior, vai indo pra frente até achar o lugar certo
         //se os rankings forem iguais, o mais novo fica atras
         else{
+            int i = 4;
             if(novoNodo->dados.ranking == p->refMovel->dados.ranking){
                 novoNodo->defronte = p->refMovel;
                 novoNodo->atras = p->refMovel->atras;
                 p->refMovel->atras->defronte = novoNodo;
                 p->refMovel->atras = novoNodo;
                 //nao precisa atualizar refMovel
-                ok = true;
+                return i;
             }
             else if(novoNodo->dados.ranking < p->refMovel->dados.ranking){
-                while(novoNodo->dados.ranking <= p->refMovel->atras->dados.ranking){
+                while(novoNodo->dados.ranking < p->refMovel->dados.ranking){
                     p->refMovel = p->refMovel->atras;
-                    //ref vai para tras ate novoNodo.ranking ser maior que refMovel->atras
+                    i++;
+                    //ref vai para tras ate novoNodo.ranking ser maior
                 }
-                //coloca novoNodo atras do refMovel
-                novoNodo->defronte = p->refMovel;
-                novoNodo->atras = p->refMovel->atras;
-                p->refMovel->atras->defronte = novoNodo;
-                p->refMovel->atras = novoNodo;
+                //coloca novoNodo na frente de refMovel
+                novoNodo->atras = p->refMovel;
+                novoNodo->defronte = p->refMovel->defronte;
+                p->refMovel->defronte->atras = novoNodo;
+                p->refMovel->defronte = novoNodo;
                 p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
-                ok = true;
+                return i;
             }
             else if(novoNodo->dados.ranking > p->refMovel->dados.ranking){
                 while(novoNodo->dados.ranking > p->refMovel->dados.ranking){
                     p->refMovel = p->refMovel->defronte;
+                    i++;
                     //ref vai para frente ate ser maior que novoNodo.ranking
                 }
                 //coloca novoNodo atras do refMovel
@@ -71,10 +74,10 @@ bool insere(info *nodoInfo, desc *p){
                 p->refMovel->atras->defronte = novoNodo;
                 p->refMovel->atras = novoNodo;
                 p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
-                ok = true;
+                return i;
             }
         }
     }
-    return ok;
+    return 0;
 }
 #endif
