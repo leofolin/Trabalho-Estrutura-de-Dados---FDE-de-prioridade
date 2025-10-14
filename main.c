@@ -27,24 +27,30 @@ int main() {
 
 void estatisticas() {
     printf("Comparação de desempenho entre as filas com e sem referencial móvel:\n");
-    unsigned int qtd;
+    printf("| Tamanho | Tipo de Fila | Qtd. Iterações | Média | Melhoria (%%) | \n");
+    unsigned int qtd_sem, qtd_com;
     float media;
-    struct desc *fila = cria(sizeof(info));
+    struct desc *fila;
+    fila = cria(sizeof(info));
     for(int i = 500; i <= 9000; i+=500) {
-        int numIter_sem = 0;
         insere = insereSemRefMovel;
-        qtd = gerarFila(fila, i);
-        media = (float) qtd/i;
+        qtd_sem = gerarFila(fila, i);
+        media = (float) qtd_sem/i;
+        printf("|   %i    |   Sem Ref.   |      %i        |    %.4f    |             |\n",
+               i, qtd_sem, media);
 
         reinicia(fila);
 
         int numIter_com = 0;
         insere = insereComRefMovel;
+        qtd_com = gerarFila(fila, i);
+        media = (float) qtd_com/i;
+        printf("|   %i    |   Com Ref.   |      %i        |    %.4f    |     %.4f %%    |\n",
+               i, qtd_com, media, (float) (qtd_sem - qtd_com)/qtd_sem * 100);
 
-        qtd = gerarFila(fila, i);
-        media = (float) qtd/i;
-        
+        reinicia(fila);
     }
+    destroi(fila);
 }
 void menu() {
     printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com\n");
@@ -75,6 +81,7 @@ void menu() {
         info dados;
         switch(opcao) {
         case(0):
+            destroi(fila);
             main();
             return;
         case(1):
