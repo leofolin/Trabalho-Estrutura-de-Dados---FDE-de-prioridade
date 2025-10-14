@@ -31,7 +31,9 @@ typedef struct desc {
 
 //================FUNCOES===================
 struct desc *cria(int tam);
-unsigned int insere(info *novo, desc *p);
+int insereSemRefMovel(info *novo, desc *p);
+int insereComRefMovel(info *novo, desc *p);
+int *insere(info *novo, desc *p);
 unsigned int tamanhoDaFila(desc *p);
 bool reinicia(desc *p);
 struct desc *destroi(desc *p);
@@ -48,3 +50,4 @@ void randomiza();
 
 // main
 void menu();
+void estatisticas();
