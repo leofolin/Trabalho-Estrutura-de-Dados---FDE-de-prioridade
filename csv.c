@@ -24,7 +24,7 @@ unsigned int gerarFila(desc *fila, int n) {
                &dados.ranking,
                dados.curso);
         qtd = insere(&dados,fila);
-        if(!qtd) {
+        if(qtd == -1) {
             fclose(file);
             return 0;
         }
