@@ -47,4 +47,4 @@ void randomiza();
 
 // main
 void menu();
-void estatisticas(int fim);
+void estatisticas();

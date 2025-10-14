@@ -14,7 +14,7 @@ int main() {
             printf("Saindo..");
             return 0;
         case(1):
-            estatisticas(0);
+            estatisticas();
             return 1;
         case(2):
             menu();
@@ -25,8 +25,7 @@ int main() {
     } while(o != 0);
 }
 
-void estatisticas(int fim) {
-
+void estatisticas() {
     printf("Comparação de desempenho entre as filas com e sem referencial móvel:\n");
     printf("| Tamanho | Tipo de Fila | Qtd. Iterações | Média | Melhoria (%%) | \n");
     unsigned int qtd_semRefMovel, qtd_comRefMovel;
@@ -36,7 +35,7 @@ void estatisticas(int fim) {
     for(int i = 500; i <= 9000; i+=500) {
         insere = insereSemRefMovel;
         qtd_semRefMovel = gerarFila(fila, i);
-        media = (float) qtd_semRefMovel/i;
+        media = (float) qtd_sem/i;
         printf("| %-7i |   %-10s | %-14u | %-9.4f | %-12s |\n",
                i, "Sem Ref.", qtd_semRefMovel, media, "");
 
@@ -52,10 +51,6 @@ void estatisticas(int fim) {
         reinicia(fila);
     }
     destroi(fila);
-    #undef PRIORIDADE
-    #define PRIORIDADE matricula
-    if(fim) return;
-    estatisticas(1);
     return;
 }
 void menu() {
