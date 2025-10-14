@@ -47,7 +47,7 @@ void estatisticas() {
     }
 }
 void menu() {
-    printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com");
+    printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com\n");
     int temRefMovel;
     scanf("%i", &temRefMovel);
     if(temRefMovel) {
@@ -55,13 +55,13 @@ void menu() {
     } else {
         insere = insereSemRefMovel;
     }
-    printf("Deseja que a fila tenha quantos elementos?");
+    printf("Deseja que a fila tenha quantos elementos?\n");
     int n;
     scanf("%i", &n);
 
     struct desc *fila = cria(sizeof(info));
     unsigned int qtd = gerarFila(fila, n);
-    printf("Criada fila com %i elementos, através de %i iterações\n", NUMERO, qtd);
+    printf("Criada fila com %i elementos, através de %i iterações\n", n, qtd);
 
     int opcao = -1;
     do {
