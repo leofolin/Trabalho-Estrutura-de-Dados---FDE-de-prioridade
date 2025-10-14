@@ -37,7 +37,7 @@ void estatisticas() {
         qtd_sem = gerarFila(fila, i);
         media = (float) qtd_sem/i;
         printf("| %-7i |   %-10s | %-14u | %-9.4f | %-12s |\n",
-               i, "Sem Ref.", qtd_com, media, "");
+               i, "Sem Ref.", qtd_sem, media, "");
 
         reinicia(fila);
 
