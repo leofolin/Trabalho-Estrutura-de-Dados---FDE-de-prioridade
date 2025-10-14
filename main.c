@@ -36,8 +36,8 @@ void estatisticas() {
         insere = insereSemRefMovel;
         qtd_sem = gerarFila(fila, i);
         media = (float) qtd_sem/i;
-        printf("|   %i    |   Sem Ref.   |      %i        |    %.4f    |             |\n",
-               i, qtd_sem, media);
+        printf("| %-7i |   %-10s | %-14u | %-9.4f | %-12s |\n",
+               i, "Sem Ref.", qtd_com, media, "");
 
         reinicia(fila);
 
@@ -45,12 +45,13 @@ void estatisticas() {
         insere = insereComRefMovel;
         qtd_com = gerarFila(fila, i);
         media = (float) qtd_com/i;
-        printf("|   %i    |   Com Ref.   |      %i        |    %.4f    |     %.4f %%    |\n",
-               i, qtd_com, media, (float) (qtd_sem - qtd_com)/qtd_sem * 100);
+        printf("| %-7i |   %-10s | %-14u | %-9.4f | %-11.2f%% |\n",
+               i, "Com Ref.", qtd_com, media, (float) (qtd_sem - qtd_com)/qtd_sem * 100);
 
         reinicia(fila);
     }
     destroi(fila);
+    return;
 }
 void menu() {
     printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com\n");
