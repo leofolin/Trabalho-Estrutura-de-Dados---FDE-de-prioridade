@@ -1,9 +1,9 @@
 #include "arq.h"
 
 int main() {
-    printf("Escolha:"
-           "0 - Mostrar estatísticas"
-           "1 - Mostrar Menu");
+    printf("Escolha:\n"
+           "0 - Mostrar estatísticas\n"
+           "1 - Mostrar Menu\n");
     int o;
     scanf("%i", &o);
     switch(o) {
@@ -16,7 +16,7 @@ int main() {
 void menu() {
     struct desc *fila = cria(sizeof(info));
     unsigned int qtd = gerarFila(fila, NUMERO);
-    printf("Criada fila com %i elementos, com %u iterações\n", NUMERO, qtd);
+    printf("Criada fila com %i elementos, através de %u iterações\n", NUMERO, qtd);
     int opcao = -1;
     do {
         printf("Escolha uma das opções:\n");
