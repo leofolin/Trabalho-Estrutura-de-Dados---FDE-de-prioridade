@@ -2,15 +2,21 @@
 
 int main() {
     printf("Escolha:\n"
-           "0 - Mostrar estatísticas\n"
-           "1 - Mostrar Menu\n");
+           "0 - Sair\n"
+           "1 - Mostrar estatísticas\n"
+           "2 - Mostrar Menu\n");
     int o;
     scanf("%i", &o);
     switch(o) {
     case(0):
+        printf("Saindo..");
         break;
     case(1):
+        estatisticas();
+        break;
+    case(2):
         menu();
+        break;
     }
 }
 void menu() {
@@ -29,7 +35,7 @@ void menu() {
         info dados;
         switch(opcao) {
         case(0):
-            printf("Saindo...");
+            main();
             break;
         case(1):
             removeFrente(fila, &dados);
