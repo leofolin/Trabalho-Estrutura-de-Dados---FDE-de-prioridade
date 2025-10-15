@@ -117,8 +117,6 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
 
         if (p->refMovel->atras != NULL)
             p->refMovel->atras->defronte = novoNodo;
-        else
-            p->cauda = novoNodo; // inserindo na cauda
 
         p->refMovel->atras = novoNodo;
         p->refMovel = novoNodo; //atualiza refMovel para o novo nodo

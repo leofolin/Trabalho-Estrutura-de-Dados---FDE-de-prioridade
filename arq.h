@@ -4,7 +4,7 @@
 #include<stdbool.h>
 
 #define ARQUIVO "dataset_v1.csv"
-#define PRIORIDADE ranking
+#define PRIORIDADE matricula
 
 typedef struct {
     char nome[50];
