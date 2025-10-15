@@ -5,6 +5,7 @@
 
 #define ARQUIVO "dataset_v1.csv"
 #define PRIORIDADE matricula
+//para mudar a prioridade, basta mudar o nome de "matricula" para "ranking" e vice-versa
 
 typedef struct {
     char nome[50];
