@@ -1,7 +1,18 @@
 #include "arq.h"
 
-int insereSemRefMovel(info *nodoInfo, desc *p) {
+int insereSemRefMovel(info *nodoInfo, desc *p, int prior) {
     struct nodo *novoNodo = malloc(sizeof(struct nodo));
+    int novoNodoPrior, auxFrentePrior, auxCaudaPrior;
+    if(prior){ //prior == 1
+        novoNodoPrior = novoNodo->dados.ranking;
+        auxFrentePrior = p->frente->dados.ranking;
+        auxCaudaPrior = p->cauda->dados.ranking;
+    }
+    else{
+        novoNodoPrior = novoNodo->dados.matricula;
+        auxFrentePrior = p->frente->dados.matricula;
+        auxCaudaPrior = p->cauda->dados.matricula;
+    }
     if(novoNodo == NULL) return -1;
     memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
 
@@ -10,14 +21,14 @@ int insereSemRefMovel(info *nodoInfo, desc *p) {
         p->frente = p->cauda = novoNodo;
         return 0;
     }
-    if(novoNodo->dados.PRIORIDADE < p->cauda->dados.PRIORIDADE) {
+    if(novoNodoPrior < auxCaudaPrior) {
         novoNodo->atras = NULL;
         novoNodo->defronte = p->cauda;
         p->cauda->atras = novoNodo;
         p->cauda = novoNodo;
         return 0;
     }
-    if(novoNodo->dados.PRIORIDADE >= p->frente->dados.PRIORIDADE) {
+    if(novoNodoPrior >= auxFrentePrior) {
         novoNodo->defronte = NULL;
         novoNodo->atras = p->frente;
         p->frente->defronte = novoNodo;
@@ -26,16 +37,23 @@ int insereSemRefMovel(info *nodoInfo, desc *p) {
     }
 
     struct nodo *aux = p->cauda;
+    int auxPrior;
+    if(prior){
+        auxPrior = aux->dados.ranking;
+    }
+    else{
+        auxPrior = aux->dados.matricula;
+    }
     unsigned int i;
-    for(i = 0; aux != NULL && novoNodo->dados.PRIORIDADE >= aux->dados.PRIORIDADE; i++) {
+    for(i = 0; aux != NULL && novoNodoPrior >= auxPrior; i++) {
         aux = aux->defronte;
+        if(prior){auxPrior = aux->dados.ranking;}
+        else{auxPrior = aux->dados.matricula;}
     }
     novoNodo->atras = aux->atras;
     novoNodo->defronte = aux;
     aux->atras->defronte = novoNodo;
-    p->frente = novoNodo;
     aux->atras = novoNodo;
-
     return i;
 }
 
