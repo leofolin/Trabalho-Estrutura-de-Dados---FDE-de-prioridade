@@ -238,7 +238,3 @@ void printaNodo(info dados) {
            ,dados.nome, dados.matricula, dados.ranking, dados.curso);
 
 }
-
-
-
-
