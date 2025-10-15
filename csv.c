@@ -6,7 +6,7 @@ void randomiza() {
            "mv --force tmp.csv " ARQUIVO);
 }
 
-unsigned int gerarFila(desc *fila, int n) {
+unsigned int gerarFila(desc *fila, int n, int prior) {
     FILE *file = fopen(ARQUIVO, "r");
     if(file == NULL) {
         printf("Arquivo %s não encontrado\n", ARQUIVO);
@@ -22,7 +22,7 @@ unsigned int gerarFila(desc *fila, int n) {
                &dados.matricula,
                &dados.ranking,
                dados.curso);
-        qtd = insere(&dados,fila);
+        qtd = insere(&dados, fila, prior);
         if(qtd == -1) {
             fclose(file);
             return 0;
