@@ -57,11 +57,22 @@ int insereSemRefMovel(info *nodoInfo, desc *p, int prior) {
     return i;
 }
 
-int insereComRefMovel(info *nodoInfo, desc *p) {
+int insereComRefMovel(info *nodoInfo, desc *p, int prior){
     struct nodo *novoNodo = NULL;
     novoNodo = malloc(sizeof(struct nodo));
     if(novoNodo == NULL) return -1;
     memcpy(&(novoNodo->dados), nodoInfo, p->tamInfo);
+    int novoNodoPrior, auxFrentePrior, auxCaudaPrior;
+    if(prior){ //prior == 1
+        novoNodoPrior = novoNodo->dados.ranking;
+        auxFrentePrior = p->frente->dados.ranking;
+        auxCaudaPrior = p->cauda->dados.ranking;
+    }
+    else{
+        novoNodoPrior = novoNodo->dados.matricula;
+        auxFrentePrior = p->frente->dados.matricula;
+        auxCaudaPrior = p->cauda->dados.matricula;
+    }
 
     //verifica fila vazia, se sim, só adiciona
     if(p->frente == NULL && p->cauda == NULL ) {
@@ -74,7 +85,7 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
     }
     //verifica se o ranking do novo aluno é menor que o da cauda
     //se for, adiciona ele na cauda
-    if(novoNodo->dados.PRIORIDADE < p->cauda->dados.PRIORIDADE) {
+    if(novoNodoPrior < auxCaudaPrior) {
         novoNodo->defronte = p->cauda;
         novoNodo->atras = NULL;
         p->cauda->atras = novoNodo;
@@ -83,7 +94,7 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
     }
     //verifica se o ranking do novo aluno é maior que o da frente da fila
     //se for, adiciona ele na frente da fila, vira o novo frente
-    if(novoNodo->dados.PRIORIDADE > p->frente->dados.PRIORIDADE) {
+    if(novoNodoPrior > auxFrentePrior) {
         novoNodo->atras = p->frente;
         novoNodo->defronte = NULL;
         p->frente->defronte = novoNodo;
@@ -94,7 +105,11 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
     //refMovel, se for, vai indo pra tras até achar o lugar certo
     //se for maior, vai indo pra frente até achar o lugar certo
     //se os rankings forem iguais, o mais novo fica atras
-    if(novoNodo->dados.PRIORIDADE == p->refMovel->dados.PRIORIDADE) {
+    int refMovelPrior;
+    if(prior){refMovelPrior = p->refMovel->dados.ranking;}
+    else{refMovelPrior = p->refMovel->dados.matricula;}
+
+    if(novoNodoPrior == refMovelPrior) {
         novoNodo->defronte = p->refMovel;
         novoNodo->atras = p->refMovel->atras;
         p->refMovel->atras->defronte = novoNodo;
@@ -103,45 +118,42 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
         return 0;
     }
     int i = 0;
-    if(novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE) {
-        while(p->refMovel->atras != NULL &&
-                novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE) {
+    if(novoNodoPrior < refMovelPrior) {
+        while(novoNodoPrior < refMovelPrior) {
             p->refMovel = p->refMovel->atras;
+            if(prior){refMovelPrior = p->refMovel->dados.ranking;}
+            else{refMovelPrior = p->refMovel->dados.matricula;}
             i++;
             //ref vai para tras ate novoNodo.ranking ser maior
         }
         //coloca novoNodo na frente de refMovel
         novoNodo->atras = p->refMovel;
         novoNodo->defronte = p->refMovel->defronte;
-        if (p->refMovel->defronte != NULL)
-            p->refMovel->defronte->atras = novoNodo;
-        else
-            p->frente = novoNodo; // inserindo na frente
-
+        p->refMovel->defronte->atras = novoNodo;
         p->refMovel->defronte = novoNodo;
         p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
+        //nao precisa atualizar refMovelPrior pois a funcao da return
         return i;
-
-    } else { // prioridade do novo nodo maior que a do refMovel
-        while(p->refMovel->defronte != NULL &&
-                novoNodo->dados.PRIORIDADE > p->refMovel->dados.PRIORIDADE) {
+   
+   } else { // prioridade do novo nodo maior que a do refMovel
+        while(novoNodoPrior > refMovelPrior) {
             p->refMovel = p->refMovel->defronte;
+            if(prior){refMovelPrior = p->refMovel->dados.ranking;}
+            else{refMovelPrior = p->refMovel->dados.matricula;}
             i++;
             //ref vai para frente ate ser maior que novoNodo.ranking
         }
         //coloca novoNodo atras do refMovel
         novoNodo->defronte = p->refMovel;
         novoNodo->atras = p->refMovel->atras;
-
-        if (p->refMovel->atras != NULL)
-            p->refMovel->atras->defronte = novoNodo;
-
+        p->refMovel->atras->defronte = novoNodo;
         p->refMovel->atras = novoNodo;
         p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
+        //nao precisa atualizar refMovelPrior pois a funcao da return
         return i;
     }
 }
-int (*insere)(info *novo, desc *p) = NULL;
+int (*insere)(info *novo, desc *p, int prior) = NULL;
 
 struct desc *cria(int tam) {
     desc *descricao = malloc(sizeof(desc));
@@ -172,8 +184,8 @@ bool removeFrente(desc *p, info *alvo) {
 }
 unsigned int tamanhoDaFila(desc *p) {
     struct nodo *aux = p->cauda;
-    unsigned int i = 0;
-    while(aux != NULL) {
+    int i = 0;
+    while(aux->defronte != NULL) {
         i++;
         aux = aux->defronte;
     }
@@ -226,4 +238,7 @@ void printaNodo(info dados) {
            ,dados.nome, dados.matricula, dados.ranking, dados.curso);
 
 }
+
+
+
 
