@@ -27,13 +27,15 @@ int insereSemRefMovel(info *nodoInfo, desc *p) {
 
     struct nodo *aux = p->cauda;
     unsigned int i;
-    for(i = 0; novoNodo->dados.PRIORIDADE >= aux->dados.PRIORIDADE; i++) {
+    for(i = 0; aux != NULL && novoNodo->dados.PRIORIDADE >= aux->dados.PRIORIDADE; i++) {
         aux = aux->defronte;
     }
     novoNodo->atras = aux->atras;
     novoNodo->defronte = aux;
     aux->atras->defronte = novoNodo;
+    p->frente = novoNodo;
     aux->atras = novoNodo;
+
     return i;
 }
 
@@ -84,7 +86,8 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
     }
     int i = 0;
     if(novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE) {
-        while(novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE) {
+        while(p->refMovel->atras != NULL &&
+                novoNodo->dados.PRIORIDADE < p->refMovel->dados.PRIORIDADE) {
             p->refMovel = p->refMovel->atras;
             i++;
             //ref vai para tras ate novoNodo.ranking ser maior
@@ -92,13 +95,18 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
         //coloca novoNodo na frente de refMovel
         novoNodo->atras = p->refMovel;
         novoNodo->defronte = p->refMovel->defronte;
-        p->refMovel->defronte->atras = novoNodo;
+        if (p->refMovel->defronte != NULL)
+            p->refMovel->defronte->atras = novoNodo;
+        else
+            p->frente = novoNodo; // inserindo na frente
+
         p->refMovel->defronte = novoNodo;
         p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
         return i;
-   
-   } else { // prioridade do novo nodo maior que a do refMovel
-        while(novoNodo->dados.PRIORIDADE > p->refMovel->dados.PRIORIDADE) {
+
+    } else { // prioridade do novo nodo maior que a do refMovel
+        while(p->refMovel->defronte != NULL &&
+                novoNodo->dados.PRIORIDADE > p->refMovel->dados.PRIORIDADE) {
             p->refMovel = p->refMovel->defronte;
             i++;
             //ref vai para frente ate ser maior que novoNodo.ranking
@@ -106,7 +114,12 @@ int insereComRefMovel(info *nodoInfo, desc *p) {
         //coloca novoNodo atras do refMovel
         novoNodo->defronte = p->refMovel;
         novoNodo->atras = p->refMovel->atras;
-        p->refMovel->atras->defronte = novoNodo;
+
+        if (p->refMovel->atras != NULL)
+            p->refMovel->atras->defronte = novoNodo;
+        else
+            p->cauda = novoNodo; // inserindo na cauda
+
         p->refMovel->atras = novoNodo;
         p->refMovel = novoNodo; //atualiza refMovel para o novo nodo
         return i;
@@ -143,8 +156,8 @@ bool removeFrente(desc *p, info *alvo) {
 }
 unsigned int tamanhoDaFila(desc *p) {
     struct nodo *aux = p->cauda;
-    int i = 0;
-    while(aux->defronte != NULL) {
+    unsigned int i = 0;
+    while(aux != NULL) {
         i++;
         aux = aux->defronte;
     }
