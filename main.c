@@ -14,7 +14,8 @@ int main() {
             printf("Saindo..");
             return 0;
         case(1):
-            estatisticas();
+            estatisticas(1);
+            //primeiro, o parâmetro vai começar com 1, depois ela muda para 0
             return 1;
         case(2):
             menu();
@@ -25,7 +26,7 @@ int main() {
     } while(o != 0);
 }
 
-void estatisticas() {
+void estatisticas(int prior) {
     printf("Comparação de desempenho entre as filas com e sem referencial móvel:\n");
     printf("| Tamanho | Tipo de Fila | Qtd. Iterações | Média | Melhoria (%%) | \n");
     unsigned int qtd_semRefMovel, qtd_comRefMovel;
@@ -34,16 +35,15 @@ void estatisticas() {
     fila = cria(sizeof(info));
     for(int i = 500; i <= 9000; i+=500) {
         insere = insereSemRefMovel;
-        qtd_semRefMovel = gerarFila(fila, i);
+        qtd_semRefMovel = gerarFila(fila, i, prior);
         media = (float) qtd_semRefMovel/i;
         printf("| %-7i |   %-10s | %-14u | %-9.4f | %-12s |\n",
                i, "Sem Ref.", qtd_semRefMovel, media, "");
 
         reinicia(fila);
 
-        int numIter_com = 0;
         insere = insereComRefMovel;
-        qtd_comRefMovel = gerarFila(fila, i);
+        qtd_comRefMovel = gerarFila(fila, i, prior);
         media = (float) qtd_comRefMovel/i;
         printf("| %-7i |   %-10s | %-14u | %-9.4f |   %-9.2f%% |\n",
                i, "Com Ref.", qtd_comRefMovel, media, (float) (qtd_semRefMovel - qtd_comRefMovel)/qtd_semRefMovel * 100);
@@ -51,10 +51,15 @@ void estatisticas() {
         reinicia(fila);
     }
     destroi(fila);
-    return;
+    if(prior == 0){
+        return;
+    }
+    else{
+        estatisticas(0);
+    }
 }
 void menu() {
-    printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com\n");
+        printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com\n");
     int temRefMovel;
     scanf("%i", &temRefMovel);
     if(temRefMovel) {
@@ -67,7 +72,7 @@ void menu() {
     scanf("%i", &n);
 
     struct desc *fila = cria(sizeof(info));
-    unsigned int qtd = gerarFila(fila, n);
+    unsigned int qtd = gerarFila(fila, n, 1);
     printf("Criada fila com %i elementos, através de %i iterações\n", n, qtd);
 
     int opcao = -1;
