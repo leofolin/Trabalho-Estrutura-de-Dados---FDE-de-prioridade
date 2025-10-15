@@ -16,7 +16,7 @@ int main() {
         case(1):
             estatisticas(1);
             //primeiro, o parâmetro vai começar com 1, depois ela muda para 0
-            return 1;
+            break;
         case(2):
             menu();
             return 2;
@@ -51,12 +51,8 @@ void estatisticas(int prior) {
         reinicia(fila);
     }
     destroi(fila);
-    if(prior == 0){
-        return;
-    }
-    else{
-        estatisticas(0);
-    }
+    if(prior == 1)
+        estatisticas(1);
 }
 void menu() {
         printf("Gerar fila com ou sem referencial móvel? Digite 0 para sem 1 para com\n");
