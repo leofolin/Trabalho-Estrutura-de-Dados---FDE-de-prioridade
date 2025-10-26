@@ -33,7 +33,8 @@ int insereSemRefMovel(info *nodoInfo, desc *p) {
     novoNodo->atras = aux->atras;
     novoNodo->defronte = aux;
     aux->atras->defronte = novoNodo;
-    p->frente = novoNodo;
+    if(novoNodo->dados.PRIORIDADE >= p->frente->dados.PRIORIDADE)
+        p->frente = novoNodo;
     aux->atras = novoNodo;
 
     return i;
@@ -144,10 +145,11 @@ bool removeFrente(desc *p, info *alvo) {
 
     struct nodo *aux = p->frente;
     if(aux == p->cauda) {
-        p->frente = p->cauda = NULL;
+        p->frente = p->cauda = p->refMovel = NULL;
     } else {
         p->frente = aux->atras;
         p->frente->defronte = NULL;
+        p->refMovel = NULL;
     }
     free(aux);
     return true;
